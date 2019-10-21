@@ -27,7 +27,9 @@ spog_enable() {
 	cp spog-init.sh /opt/spog/bin && chmod a+x /opt/spog/bin/spog-init.sh
 	cp spog-cms.service /etc/systemd/system/
 	/bin/systemctl enable spog-cms
-	echo "*** Done with setup. Run 'service spog-cms start' ***"
+	echo "*** Starting service ... ***"
+	service spog-cms start
+	echo "*** Done with setup ***"
 }
 
 if [ "$user" = "root" ]; then
