@@ -1,0 +1,13 @@
+[Unit]
+Description=spog-cms
+
+[Service]
+Environment=PATH=/opt/spog/node/bin:$PATH
+#ExecStart=/opt/spog/bin/spog-init.sh
+ExecStart=/opt/spog/node/bin/bytenode /opt/spog/sbin/spog.jsc
+Type=simple
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
