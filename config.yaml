@@ -1,0 +1,30 @@
+# School Name & Area details
+school : Govt School
+state : Karnataka
+district : Bengaluru Urban
+subdivision : Bengaluru South
+
+# Optional properties (0-20), which may needed later for selection/grouping 
+property 0: Area Information
+property 1: Cluster Information
+
+# Log files size (mb) and number of days to keep file
+logMaxSize : 128
+logMaxDays : 15
+
+#Data Directory - Default /opt/spog/data
+data : /opt/spog/data
+
+#Logs Directory - Default /opt/spog/logs
+logs : /opt/spog/logs
+
+# Interval in seconds to monitor 
+interval:
+  memory : 300
+  cpu    : 300
+  disk   : 300
+  uptime : 300
+
+# List of folders to watch for files access
+folders:
+  - /data
