@@ -12,3 +12,4 @@
 
 ## Future changelist
 * Handling of update option
+* Include copydb script
