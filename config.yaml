@@ -1,5 +1,5 @@
 # School Name & Area details
-school : Govt School
+school : KPS-BASAVANAGUDI
 state : Karnataka
 district : Bengaluru Urban
 subdivision : Bengaluru South
@@ -27,4 +27,4 @@ interval:
 
 # List of folders to watch for files access
 folders:
-  - /data
+  - '/data'
