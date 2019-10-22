@@ -1,3 +1,6 @@
 #!/bin/bash
 export PATH=$PATH:/opt/spog/node/bin
-/opt/spog/node/bin/bytenode /opt/spog/sbin/spog.jsc
+audit_output=`/sbin/auditctl -l`
+if [ "$audit_output" = "No Rules" ] || [ "$audit_output" = "" ]; then
+	service auditd restart
+fi
