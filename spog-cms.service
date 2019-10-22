@@ -3,8 +3,8 @@ Description=spog-cms
 
 [Service]
 Environment=PATH=/opt/spog/node/bin:$PATH
-#ExecStart=/opt/spog/bin/spog-init.sh
 ExecStart=/opt/spog/node/bin/bytenode /opt/spog/sbin/spog.jsc
+#ExecStart=/opt/spog/bin/spog-init.sh
 Type=simple
 User=root
 Group=root
