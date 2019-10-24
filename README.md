@@ -8,8 +8,9 @@
 ## Current changelist
 * Enabled different install options
 * Handling of auditd persistence across reboots
+* Handling of update option
+* Update latest version of js code files
 
 
 ## Future changelist
-* Handling of update option
 * Include copydb script
