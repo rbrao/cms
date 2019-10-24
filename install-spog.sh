@@ -123,7 +123,15 @@ reinstall() {
 }
 
 update() {
-	echo "Updating ..."
+	if [ ! -e /opt/spog ]; then
+		echo "Installation folder not found. Exiting"
+		exit -1
+	else
+		service spog-cms stop
+		cp *.jsc /opt/spog/sbin/
+		service spog-cms start
+	fi
+	echo "*** Updated sbin files ***"
 }
 
 if [ "$user" = "root" ] && [ "$option" != "" ]; then
