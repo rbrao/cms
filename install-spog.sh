@@ -16,7 +16,7 @@ precheck() {
 	fi
 	x11_state=`dpkg -l x11-xserver-utils|grep '^ii'|awk '{print $2}'`
 	if [ "$x11_state" != "x11-xserver-utils" ]; then
-		apt install x11-server-utils
+		apt install x11-xserver-utils
 	fi
 	util_state=`dpkg -l util-linux|grep '^ii'|awk '{print $2}'`
 	if [ "$util_state" != "util-linux" ]; then
