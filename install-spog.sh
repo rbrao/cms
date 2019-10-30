@@ -61,8 +61,10 @@ audit_setup() {
 }
 
 spog_enable() {
-	echo "*** Setting up init scripts and enabling service ***"
-	cp spog-init.sh /opt/spog/bin && chmod a+x /opt/spog/bin/spog-init.sh
+	echo "*** Enabling bin scripts ***"
+	cp bin/spog-*.sh /opt/spog/bin && chmod a+x /opt/spog/bin/spog-*.sh
+	echo "*** Enabling sbin scripts and spog service***"
+	cp sbin/*.jsc /opt/spog/sbin
 	cp spog-cms.service /etc/systemd/system/
 	/bin/systemctl enable spog-cms
 	if [ -e /tmp/spog.db.prev ]; then
@@ -140,7 +142,8 @@ update() {
 		exit -1
 	else
 		service spog-cms stop
-		cp *.jsc /opt/spog/sbin/
+		cp bin/*.sh /opt/spog/bin/
+		cp sbin/*.jsc /opt/spog/sbin/
 		service spog-cms start
 	fi
 	echo "*** Updated sbin files ***"
