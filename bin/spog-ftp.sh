@@ -4,6 +4,8 @@ DBFILE=`ls -tr /opt/spog/sbin/*.db|tail -1|awk -F/ '{print \$NF}'`
 DISTRICT=`grep ^district /opt/spog/etc/config.yaml |awk -F: '{print $NF}'|sed s/^\ //g`
 SUBDIV=`grep ^subdivision /opt/spog/etc/config.yaml |awk -F: '{print $NF}'|sed s/^\ //g`
 
+/opt/spog/node/bin/bytenode /opt/spog/sbin/copydb.jsc
+
 ftp -np -v 139.59.58.35 << EOT
 bin
 user spogcms spog123
