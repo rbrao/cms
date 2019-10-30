@@ -33,11 +33,11 @@ precheck() {
 	fi
 }
 
-postcheck() {
-	/opt/spog/node/bin/bytenode /opt/spog/sbin/list.jsc
-	service auditd status
-	service spog-cms status
-	auditctl -l
+pre_config() {
+	echo "*** Setting up Environment ***"
+	export PATH=$PATH:/opt/spog/node/bin
+	echo 'PATH=$PATH:/opt/spog/node/bin' >> ~/.profile
+	source ~/.profile
 }
 
 extract_files() {
@@ -76,6 +76,18 @@ spog_enable() {
 	service spog-cms start
 }
 
+post_config() {
+	echo "*** Setting up crontab ***"
+	echo "* */3 * * * /opt/spog/bin/spog-ftp.sh" >> /var/spool/cron/crontabs/root
+}
+
+postcheck() {
+	/opt/spog/node/bin/bytenode /opt/spog/sbin/list.jsc
+	service auditd status
+	service spog-cms status
+	auditctl -l
+}
+
 install() {
 	if [ -e /opt/spog ]; then
 		echo "spog-cms is already installed. Run $0 reinstall instead"
@@ -84,18 +96,16 @@ install() {
 	echo "Installing ..."
 	vi config.yaml
 	read -p "DO YOU WANT TO CONTINUE .. (Y/n)?" response
-	if [ "$response" = "n" ] || [ "$response" = "N" ]; then
+	if [ "$response" != "y" ] && [ "$response" != "Y" ]; then
 		echo "*** User initiated abort. Exiting ***"
 		exit 0
 	fi
-	echo "*** Setting up Environment ***"
-	export PATH=$PATH:/opt/spog/node/bin
-	echo 'PATH=$PATH:/opt/spog/node/bin' >> ~/.profile
-	source ~/.profile
 	precheck
+	pre_config
 	extract_files
 	audit_setup
 	spog_enable
+	post_config
 	postcheck
 	echo "*** Done with setup ***"
 }
@@ -111,6 +121,8 @@ uninstall() {
 	cp /etc/audit/audit.rules /etc/audit/audit.rules.old
 	grep -v '^-w' /etc/audit/audit.rules.old > /etc/audit/audit.rules
 	grep -v '^-w' /etc/audit/rules.d/audit.rules.old > /etc/audit/rules.d/audit.rules
+	cp /var/spool/cron/crontabs/root /var/spool/cron/crontabs/root.old
+	grep -v 'spog-ftp.sh' /var/spool/cron/crontabs/root.old > /var/spool/cron/crontabs/root
 	rm -rf /opt/spog
 	echo "*** Uninstalled ***"
 }
