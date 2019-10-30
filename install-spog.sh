@@ -118,6 +118,7 @@ uninstall() {
 	service auditd stop
 	/bin/systemctl disable spog-cms
 	/bin/systemctl disable auditd
+	rm /etc/systemd/system/spog-cms.service
 #	apt remove auditd
 	cp /etc/audit/rules.d/audit.rules /etc/audit/rules.d/audit.rules.old
 	cp /etc/audit/audit.rules /etc/audit/audit.rules.old
