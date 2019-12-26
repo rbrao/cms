@@ -1,5 +1,7 @@
 # spog-cms
 ## Installation procedure
+### Linux/Ubuntu/CentOS
+
 1. Download contents to a temporary location
 2. `cd /tmp/location`   (Replace /tmp/location to actual temporary location)
 3. `./install-spog.sh install | uninstall | reinstall | update`  (Run `chmod a+x *.sh` if unable to execute)
@@ -17,3 +19,10 @@
 ## Future changelist
 * Enable execute of external pen/flash drives
 * Cleaner error handling
+
+### Windows 10
+* Configure Directory audit,
+	- Folder properties > advanced > audit. Select users and apply.
+
+* Extract to c:\spog
+* c:\spog\node\bytenode c:\spog\sbin\spog.jsc
